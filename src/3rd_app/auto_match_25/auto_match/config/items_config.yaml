@@ -1,0 +1,15 @@
+items:
+  bear: 1
+  wine: 2
+  clock: 3
+  bear_site: 10
+  wine_site: 20
+  clock_site: 30
+  base: 99
+  banana: 4
+  banana_site: 40
+objects:
+  objects_a: clock
+  objects_b: bear
+  objects_c: wine
+  objects_d: banana

@@ -1,0 +1,10 @@
+<!--semi_auto-->
+<!--SPARK技术讨论与反馈群：8346256-->
+<launch>
+  
+	<!-- grasp -->
+	<node pkg="semi_auto_match_24" type="grasp2.py" name="grasp" launch-prefix="xterm -e" />
+	
+
+
+</launch>

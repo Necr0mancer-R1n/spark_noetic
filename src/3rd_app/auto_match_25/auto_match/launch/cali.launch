@@ -1,0 +1,19 @@
+<!--move2grab-->
+<!--SPARK技术讨论与反馈群：8346256-->
+<launch>
+	<arg name="manual_rosrun" default="false"/>
+	<!-- 摄像机类型 -->
+	<arg name="camera_type_tel" default="d435" doc="camera type [astrapro, astra, d435...]"/>
+
+	<!--spark底盘驱动，机器人描述,底盘,相机-->
+	<include file="$(find spark_bringup)/launch/driver_bringup.launch">
+		<arg name="camera_type_tel" value="$(arg camera_type_tel)"/>
+	</include>
+
+	<!--UARM机械臂-->
+	<include file="$(find swiftpro)/launch/pro_control_nomoveit.launch"/>
+
+	<!-- 流程程序 -->
+	<node pkg="auto_match" name="cali_arm_cam" type="cali_arm_cam.py" output="screen" launch-prefix="xterm -e" unless="$(arg manual_rosrun)"/>
+
+</launch>

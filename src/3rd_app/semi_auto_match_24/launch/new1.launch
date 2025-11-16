@@ -1,0 +1,29 @@
+<!--semi_auto-->
+<!--SPARK技术讨论与反馈群：8346256-->
+<launch>
+  	<!-- Arguments -->
+  	
+	<arg name="camera_type_tel"        default="d435"       doc="camera type [astrapro, astra, d435...]"/>
+	<arg name="configuration_basename" default="spark_lds_2d.lua"/>
+	
+  	<arg name="open_rviz"              default="true"/>
+  	
+	<!--spark底盘驱动，机器人描述,底盘,相机-->
+	<include file="$(find spark_bringup)/launch/driver_bringup.launch">
+		<arg name="camera_type_tel"	value="$(arg camera_type_tel)"/>
+		
+		<arg name="start_camera" value="true"/>	
+	</include>
+
+    <!--UARM机械臂-->
+    <include file="$(find swiftpro)/launch/pro_control_nomoveit.launch"/>
+
+	<!-- Teleop -->
+	<node pkg="semi_auto_match_24" type="teleop_4.py" name="teleop" launch-prefix="xterm -e" />
+	<!--> grasp -->
+	<node pkg="semi_auto_match_24" type="grasp_4.py" name="GraspObject" launch-prefix="xterm -e" />
+	<!--rviz -->
+	<!--node pkg="rviz" type="rviz" name="rviz" args="-d $(find semi_auto_match_24)/rviz/new.rviz" required="true" /-->
+
+
+</launch>
